@@ -10,5 +10,6 @@ export default {
   },
   files: {
     countries: join(storageDir, 'countries.txt'),
+    id: join(storageDir, 'id.txt'),
   }
 };

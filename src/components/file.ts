@@ -1,7 +1,6 @@
 import { promises as fsPromises, createReadStream } from 'fs';
 const readline = require('readline');
 
-
 export class File {
   constructor(private path: string) {}
 
@@ -28,5 +27,18 @@ export class File {
     
     await filehandle.write(`${data}\n`, fileSize);
     await filehandle.close();
+  }
+
+  /**
+   * Replace line in a file
+   * @param data Object
+   */
+  async replace(data: { value: string, line: number }) {
+    const filehandle = await fsPromises.open(this.path, 'r+');
+    const content = await filehandle.readFile();
+
+    const lines: string[] = content.toString().split("\n");
+    lines[data.line] = data.value;
+    await filehandle.write(lines.join('\n'), 0);
   }
 }
