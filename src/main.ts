@@ -1,3 +1,5 @@
-const a: string = 'Start';
+import { Country } from './components/country';
 
-console.log(a);
+const query = 'country add Argentina'; // Simulate a query
+const c = new Country('Argentina');
+c.find();
